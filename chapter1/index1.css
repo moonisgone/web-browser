@@ -3,12 +3,21 @@ body{
 }
 
 div{
-    background-color: blanchedalmond;
-    margin: 5px;
     width: 200px;
     height: 200px;
+    background-color: blanchedalmond;
+    margin-bottom: 4px;
+
 }
 
 .pointerBox{
     background-color: cornflowerblue;
+}
+
+.button{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    font-size: 5px;
+    margin-right: 5px;
 }

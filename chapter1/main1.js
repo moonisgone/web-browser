@@ -21,3 +21,22 @@ pointBox.addEventListener('click',(e)=>{
     console.log(`clientX :  ${clientX}, clientY : ${clientY}` );
     console.log(`pageX :  ${pageX}, pageY : ${pageY}` );
 })
+
+const scrollByPX = document.querySelector('.scrollByPX');
+const scrollToPx = document.querySelector('.scrollToPx');
+const scrollIntoSpecial = document.querySelector('.scrollIntoSpecial');
+
+scrollByPX.addEventListener('click',()=>{
+    window.scrollBy(0, 100);
+});
+
+scrollToPx.addEventListener('click',()=>{
+    
+    window.scrollTo(0,100);
+    });
+
+scrollIntoSpecial.addEventListener('click',()=>{
+
+    pointBox.scrollIntoView();
+});
+
