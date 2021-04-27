@@ -1,0 +1,14 @@
+body{
+    background-color: black;
+}
+
+div{
+    background-color: blanchedalmond;
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+}
+
+.pointerBox{
+    background-color: cornflowerblue;
+}
