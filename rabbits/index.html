@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll</title>
+    <style>
+      body{
+        background-color:  black;
+      }
+      .scrollBtn{
+        outline: none;
+        background-color: coral;
+        cursor: pointer;
+      }
+      .imgDiv{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        left: 50%;
+        transform: translate(-100px,0);
+      }
+
+    
+
+    </style>
+  </head>
+  <body>
+    <div class="imgDiv">
+      <button class="scrollBtn">
+        Find a rabit
+      </button>
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="rabbit" src="img/rabbit.png" alt="rabbit">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+      <img class="carrot" src="img/carrot.png" alt="carrot">
+    </div>
+    <script>
+      let rabbitImg = document.querySelector('.rabbit');
+      let scrollBtn = document.querySelector('.scrollBtn');
+
+      scrollBtn.addEventListener('click',()=>{
+        rabbitImg.scrollIntoView({behavior:"smooth", block:"center"});
+      });
+
+    </script>
+  </body>
+</html>
