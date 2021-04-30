@@ -1,7 +1,6 @@
 'use strict';
 
 const items = document.querySelector('.items');
-//const itemDelete = document.querySelector('.item_delete');
 const itemAdd = document.querySelector('.footer_button');
 const input = document.querySelector('.footer_input');
 
