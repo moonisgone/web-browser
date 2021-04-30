@@ -1,7 +1,7 @@
 'use strict';
 
 const items = document.querySelector('.items');
-const itemDelete = document.querySelector('.item_delete');
+//const itemDelete = document.querySelector('.item_delete');
 const itemAdd = document.querySelector('.footer_button');
 const input = document.querySelector('.footer_input');
 
@@ -22,10 +22,11 @@ function onAdd(){
     input.focus();
 }
 
+let id = 0; //UUID
 function createItem(text){
     const itemRow = document.createElement('li');
     itemRow.setAttribute('class','item_row');
-
+    
     const item = document.createElement('div');
     item.setAttribute('class','item');
 
@@ -41,6 +42,7 @@ function createItem(text){
     deleteBtn.innerHTML='<i class="far fa-trash-alt"></i>';
     deleteBtn.addEventListener('click',()=>{
         items.removeChild(itemRow);
+    
     });
 
     item.appendChild(name);
@@ -49,7 +51,9 @@ function createItem(text){
     itemRow.appendChild(item);
     itemRow.appendChild(itemDevider);
     return itemRow;
+    
 }
+
 
 itemAdd.addEventListener('click',()=>{
     console.log('dfdf');
