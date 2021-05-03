@@ -21,6 +21,7 @@ function createBugs(){
     let bug = document.createElement('img');
     bug.src = 'img/bug.png';
     bug.setAttribute('class','bug');
+    
     return bug;
 }
 
@@ -44,6 +45,7 @@ function createCarrot(){
     carrot.src = 'img/carrot.png';
     carrot.setAttribute('class','carrot');
     carrot.setAttribute('data-id',id);
+    
     id++;
     return carrot;
 }
@@ -58,10 +60,11 @@ function randomPosition(item){
     const itemHalfWidth = itemRect.width / 2;
     const itemHalfHeight = itemRect.height / 2;
     //1536  722/2 -> 360
-    let x = rand(20,1500);
-    let y = rand(300,600);
-    item.style.transform = `translate(${x - itemHalfWidth}px,${y - itemHalfHeight}px)`;
-    
+    let x = rand(30,1150);
+    let y = rand(350,550);
+    //item.style.transform = `translate(${x - itemHalfWidth}px,${y - itemHalfHeight}px)`;
+    item.style.top = `${y}px`;
+    item.style.left = `${x}px`;
 }
 
 function addItem(item_count){
@@ -72,11 +75,6 @@ function addItem(item_count){
         let carrot = createCarrot();
         bugs.appendChild(bug);
         carrots.appendChild(carrot);
-
-        bug.style.width = '40px';
-        bug.style.height = '40px';
-        carrot.style.width = '50px';
-        carrot.style.height = '50px';
       
         randomPosition(bug);
         randomPosition(carrot);
