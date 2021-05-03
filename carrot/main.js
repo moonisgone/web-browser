@@ -6,24 +6,43 @@ const alarm = document.querySelector('.alarm');
 const alarmText = document.querySelector('.text');
 const bugs = document.querySelector('.bugs');
 const carrots = document.querySelector('.carrots');
+const startImg = document.querySelector('.fa-play');
+const stopImg = document.querySelector('.fa-stop');
 
 let id = 0;
 const ITEM_COUNT = 10;
 let time = 10;
+let removeCarrotCount = 0;
+let timer;
 
 function createBugs(){
     let bug = document.createElement('img');
     bug.src = 'img/bug.png';
     bug.setAttribute('class','bug');
-    bug.setAttribute('data-id',id);
-    id++;
     return bug;
 }
+
+carrots.addEventListener('click',(e)=>{
+    console.log(e.target.dataset.id);
+    let i = e.target.dataset.id;
+    const item = document.querySelector(`.carrot[data-id="${i}"]`);
+    item.remove();
+    removeCarrotCount++;
+    showCount();
+    
+})
+
+bugs.addEventListener('click',()=>{
+    failAlarm();
+    clearTimeout(timer);
+})
 
 function createCarrot(){
     let carrot = document.createElement('img');
     carrot.src = 'img/carrot.png';
     carrot.setAttribute('class','carrot');
+    carrot.setAttribute('data-id',id);
+    id++;
     return carrot;
 }
 
@@ -63,6 +82,25 @@ function addItem(item_count){
     
 }
 
+function showCount(){
+    let num = 10 - removeCarrotCount;
+    count.innerHTML = `${num}`;
+    if(num===0){
+        successAlarm();
+    }
+}
+
+function successAlarm(){
+    startStopBtn.style.display = 'none';
+    alarm.style.display = 'block';
+    alarmText.innerHTML = "YOU WIN!";
+}
+function failAlarm(){
+    startStopBtn.style.display = 'none';
+    alarm.style.display = 'block';
+    alarmText.innerHTML = "YOU LOSE..";
+}
+
 function showAlarm(){
     alarm.style.display = 'block';
 }
@@ -70,15 +108,29 @@ function showAlarm(){
 function showTime(){
     clockText.innerHTML=`0:${time}`
     if(time === 0){
-        showAlarm();
+        failAlarm();
         return;
     }
     time = time - 1;
-    setTimeout(showTime,1000);
+    timer = setTimeout(showTime,1000);
 }
 
 startStopBtn.addEventListener('click',()=>{
+    console.log(startStopBtn.dataset.toggle);
+    if(startStopBtn.dataset.toggle === 'stop') // 재생클릭시
+    {
+        showCount();
+        showTime();
+        addItem(ITEM_COUNT);  
+        startStopBtn.innerHTML='<i class="fas fa-stop"></i>';
+        startStopBtn.dataset.toggle = 'start';
 
-    showTime();
-    addItem(ITEM_COUNT);   
+    }else{   // 스탑 클릭시
+        startStopBtn.innerHTML='<i class="fas fa-play"></i>';
+        startStopBtn.dataset.toggle = 'stop';
+    }
+    console.log(startStopBtn.dataset.toggle);
+    
+    //showTime();
+    //addItem(ITEM_COUNT);   
 })
