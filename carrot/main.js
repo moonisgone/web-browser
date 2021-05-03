@@ -8,12 +8,14 @@ const bugs = document.querySelector('.bugs');
 const carrots = document.querySelector('.carrots');
 const startImg = document.querySelector('.fa-play');
 const stopImg = document.querySelector('.fa-stop');
+const container = document.querySelector('.container');
 
 let id = 0;
 const ITEM_COUNT = 10;
 let time = 10;
 let removeCarrotCount = 0;
 let timer;
+let num;
 
 function createBugs(){
     let bug = document.createElement('img');
@@ -83,10 +85,11 @@ function addItem(item_count){
 }
 
 function showCount(){
-    let num = 10 - removeCarrotCount;
+    num = 10 - removeCarrotCount;
     count.innerHTML = `${num}`;
     if(num===0){
         successAlarm();
+        clearTimeout(timer);
     }
 }
 
@@ -106,6 +109,7 @@ function showAlarm(){
 }
 
 function showTime(){
+    
     clockText.innerHTML=`0:${time}`
     if(time === 0){
         failAlarm();
@@ -114,6 +118,32 @@ function showTime(){
     time = time - 1;
     timer = setTimeout(showTime,1000);
 }
+
+// 해야될것
+// 1. 리플레이 할떄 벌래 지우는것
+function resetAllItem(){
+    console.log(bugs.hasChildNodes());
+    console.log(bugs.childNodes[0]);
+    while ( bugs.hasChildNodes() ) {
+        bugs.removeChild( bugs.childNodes[0] );
+      }
+    while ( carrots.hasChildNodes() ) {
+        carrots.removeChild( carrots.childNodes[0] );
+    }
+}
+
+replayBtn.addEventListener('click',()=>{
+    startStopBtn.style.display = 'inline-block';
+    alarm.style.display = 'none';
+    time = 10 ;
+    removeCarrotCount = 0;
+    showCount();
+    showTime();
+    resetAllItem();
+    addItem(ITEM_COUNT);  
+    startStopBtn.innerHTML='<i class="fas fa-stop"></i>';
+    startStopBtn.dataset.toggle = 'start';
+})
 
 startStopBtn.addEventListener('click',()=>{
     console.log(startStopBtn.dataset.toggle);
@@ -126,11 +156,14 @@ startStopBtn.addEventListener('click',()=>{
         startStopBtn.dataset.toggle = 'start';
 
     }else{   // 스탑 클릭시
+        resetAllItem();
+        clearTimeout(timer);
+        time = 10 ;
+        removeCarrotCount = 0;
+        clockText.innerHTML='00:00';
+        count.innerHTML = '0';
         startStopBtn.innerHTML='<i class="fas fa-play"></i>';
         startStopBtn.dataset.toggle = 'stop';
     }
-    console.log(startStopBtn.dataset.toggle);
-    
-    //showTime();
-    //addItem(ITEM_COUNT);   
-})
+      
+});
