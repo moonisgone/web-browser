@@ -135,14 +135,16 @@ function showTime(){
 // 해야될것
 // 1. 리플레이 할떄 벌래 지우는것
 function resetAllItem(){
-    console.log(bugs.hasChildNodes());
-    console.log(bugs.childNodes[0]);
-    while ( bugs.hasChildNodes() ) {
+    bugs.innerHTML='';
+    carrots.innerHTML='';
+    //console.log(bugs.hasChildNodes());
+    //console.log(bugs.childNodes[0]);
+   /* while ( bugs.hasChildNodes() ) {
         bugs.removeChild( bugs.childNodes[0] );
       }
     while ( carrots.hasChildNodes() ) {
         carrots.removeChild( carrots.childNodes[0] );
-    }
+    }*/
 }
 
 replayBtn.addEventListener('click',()=>{
