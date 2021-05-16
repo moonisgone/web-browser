@@ -48,7 +48,7 @@ export class Field {
       this.field.appendChild(item);
     }
   }
-
+//
   onFieldClickListener(event) {
     const target = event.target;
     if (target.matches('.carrot')) {
